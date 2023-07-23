@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+  * {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+  }
+
+  html {
+    font-size: 62.5%;
+  }
+
+  .app {
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(208, 230, 230);
+  }
+
+  /*============================================main===================================*/
+  .main {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: row;
+
+
+  }
+
+  /* =========================================sidebar==================================*/
+  .main .sidebar {
+    width: 10%;
+    padding: 1rem;
+    height: 100%;
+    background-color: rgb(132, 179, 218);
+    display: flex;
+    justify-content: center;
+    font-family: Roboto, arial, sans-serif;
+    font-weight: 200;
+
+    /* will be removed during development */
+    margin: 0px 0px;
+    transition: 0.4s;
+  }
+
+  hr {
+    color: black
+  }
+
+  .main .sidebar aside {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+
+  }
+
+  .main .sidebar aside .icons {
+    display: flex;
+    flex-direction: column;
+
+
+  }
+
+  .main .sidebar aside .icons span {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    align-items: center;
+    align-content: center;
+    flex-direction: row;
+
+    font-size: 2rem;
+    color: rgb(8, 8, 8);
+    padding: 1rem 0rem;
+
+    font-size: 1.5rem;
+    border-radius: 0.5rem;
+
+
+
+
+  }
+
+  .main .sidebar aside .icons span:hover {
+    background-color: rgb(119, 142, 204);
+  }
+
+  .main .sidebar aside .icons span:hover i {
+    color: rgb(36, 80, 100);
+  }
+
+  .main .sidebar aside .icons span i,
+  p {
+    margin: 0px 1.5rem;
+  }
+
+  .main .sidebar aside .icons span i {
+    color: rgb(63, 45, 143);
+    font-size: 2.5rem;
+  }
+
+  /* .main .sidebar aside .icons span p{
+                    display:inline-block;
+          } */
+
+  /* collapse classes */
+  /* add with tag i.e we can only write add class */
+  .para2.col {
+    display: none;
+  }
+
+  /* class add with class i.e i have to write both classes */
+
+  .sidebar.reduce {
+    width: 5%;
+    animation: colapse 0.5s;
+  }
+
+  @keyframes colapse {
+    0% {
+      width: 10%;
+    }
+
+    100% {
+      width: 5%;
+    }
+
+  }
+
+  .sidebar-span.span-center {
+    justify-content: center;
+
+  }
+
+  /* span contain another span i.e we have to maintain whole class hierarchy */
+  .main .sidebar aside .subscription span.span-center {
+    justify-content: center;
+
+
+  }
+
+
+
+
+  .main .sidebar aside .subscription {
+    display: flex;
+    flex-direction: column;
+
+  }
+
+  .main .sidebar aside .subscription span {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    font-size: 2rem;
+    color: aliceblue;
+    padding: 1rem 0rem;
+
+    font-size: 1.5rem;
+    border-radius: 0.5rem;
+
+
+
+
+
+
+  }
+
+  .main .sidebar aside .subscription .spchild {
+    display: flex;
+    justify-content: start;
+
+
+
+    padding: 0px;
+
+  }
+
+  /* .main .sidebar aside .subscription span .spchild{
+                    justify-content: start;
+
+          } */
+
+  
+  .main .sidebar aside .buttons {
+    display: flex;
+    flex-direction: column;
+
+  }
+
+  .main .sidebar aside .buttons span {
+    display: flex;
+    flex-direction: row;
+    padding: 1rem 0rem;
+    align-items: center;
+    align-content: center;
+    overflow: hidden;
+    flex-wrap: nowrap;
+    font-size: 15px;
+  }
+
+  .main .sidebar aside .buttons span i,
+  img {
+    margin: 0px 1.5rem;
+  }
+
+  .main .sidebar aside .buttons span i {
+    color: rgb(120, 36, 189);
+    font-size: 2.5rem;
+  }
+
+  .main .sidebar aside .buttons span img {
+    height: 3rem;
+    width: 50%;
+    transition: 0.5s;
+  }
+
+  .main .sidebar aside .buttons span i:hover {
+    transform: scale(1.2);
+  }
+
+  /*===================================content===================================*/
+
+  .main .content {
+    height: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+  }
+
+  .main .content div {
+    width: 20%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 10px;
+
+  }
+
+  .main .content div.charts {
+    width: 55%;
+  }
+
+  .main .content div.charts div.chart-bar {
+    width: 80%;
+    margin: 0px auto;
+
+  }
+
+  .main .content div.charts div.chart-stat {
+    width: 80%;
+    margin: 0xp auto;
+    display: flex;
+    flex-direction: row !important;
+    justify-content: space-between;
+  }
+
+  .main .content div.charts div.chart-stat span {
+    display: flex;
+    flex-direction: column;
+    align-items: start !important;
+    text-align: left !important;
+    padding: 0px !important;
+    border-bottom: 2px solid rgb(120, 36, 189);
+
+    
+  }
+
+  .main .content div.charts div.chart-stat span p {
+    margin: 0px 0px;
+    
+
+  }
+
+  .main .content div.charts div.compare-bar {
+    width: 80%;
+    margin: 0px auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .main .content div.charts div.compare-chart {
+    width: 100%;
+    margin: 0px auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+  }
+
+  .main .content div.charts div.compare-chart .text {
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+    width: auto;
+  
+
+  }
+
+  .pie-chart {
+    display:flex;
+    flex-direction: row!important;
+    width:70%!important;
+    justify-content: space-evenly;
+    margin: 0px auto;
+    background-color: rgb(132, 179, 218);
+    border-radius: 10px;
+
+  }
+
+  
+  .chart-bar-pie{
+    width: 80px;
+    height:40px
+  }
+
+  .main .content div.charts div.compare-chart .text p {
+    margin: 10px 0px;
+  }
+
+  .main .content div.additional-information {
+    width: 15%;
+  }
+
+  .main .content div span {
+    display: flex;
+    flex-direction: column;
+
+  }
+
+
+  .main .content div span.name {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+
+  .main .content div span img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+  }
+
+  .main .content div span span {
+    display: flex;
+    flex-direction: column;
+
+  }
+
+  .main .content div span span span p {
+    margin: 10px 0px;
+
+  }
+
+  .main .content div span span.range {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .main .content div span span.range p {
+    margin: 0px 10px;
+  }
+
+  .chart-title {
+    width:100%!important;
+    display: flex;
+    flex-direction: column;
+    
+  }
+  .chart-title span{
+    word-wrap:normal;
+  }
+
+  .chart-title .vio-colored {
+    color: rgb(68, 16, 165);
+    font-size: 15px;
+  }
+
+
+  .digit {
+    font-weight: 400;
+    font-size: 30px;
+    margin: 10px 0px;
+  }
+
+  .grey-text {
+    color: grey;
+    font-weight: 100;
+    font-size: 20px;
+  }
+
+  .title {
+    font-size: 25px;
+    margin: 10px 0px;
+    width: auto!important;
+  }
+
+  .title2 {
+    font-size: 15px;
+    margin: 20px 0px;
+    padding: 0px;
+
+  }
+
+  .title2 p {
+    font-size: 15px;
+
+  }
+
+  .title3 {
+    font-size: 20px;
+  }
+  .title4{
+    font-size: 40px!important;
+    width: auto!important;
+  }
+  .account-title{
+    font-size: 30px;
+  }
+  input[type="range"]{
+    width:70%;
+  }
+
+  input[type="range"]::-moz-range-progress {
+  color: #43e5f7; 
+}
+
+  span.button {
+    display: flex;
+    justify-content: center;
+
+    margin: 10px 0px;
+
+  }
+
+  span.button button {
+    width: fit-content;
+    border: none;
+    background-color: rgb(68, 16, 165);
+    color: white;
+    font-weight: 100;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 15px;
+
+
+
+  }
+
+  span.button button i {
+    margin: 0px 10px;
+  }
+
+  .main .content div span.recent-transaction {
+    margin: 20px 0px;
+  }
+
+  .transactions {
+    margin: 10px 0px;
+  }
+
+  .transactions p {
+    margin: 5px 0px;
+    font-size: 15px;
+  }
+
+  .range2 {
+    display: flex;
+    flex-direction: row !important;
+    justify-content: space-between;
+    font-size: 20px;
+
+  }
+  .label{
+    color: rgb(68, 16, 165);
+    font-size: 20px;
+    font-weight: 500;
+    margin: 0px 10px;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .update-button button {
+    width: 100% !important;
+    padding: 15px auto;
+
+  }
+
+
+
+  @media screen and (max-width : 600px)  {
+    .app{
+    height: auto;
+  }
+    .main {
+      flex-direction: column-reverse;
+      max-height: 100vh!important;
+      position: relative!important;
+
+      overflow-y: scroll!important;
+
+    }
+    .main::-webkit-scrollbar{
+      display: none;
+
+    }
+
+    .main .sidebar {
+      width: 100%;
+      height: auto;
+      border-radius: 0px;
+      padding: 10px;
+     
+    }
+
+    .main .sidebar aside {
+      width: 100%;
+      flex-direction: row;
+
+    }
+
+    .main .sidebar aside .icons {
+      width: 100%;
+      flex-direction: row;
+      justify-content: space-evenly;
+      font-size: 25px !important;
+    }
+
+    .para {
+      display: none;
+    }
+
+    .main .sidebar aside .buttons {
+      display: none;
+    }
+
+    .main .content {
+      width: 100%;
+      height: auto;
+      flex-direction: column;
+
+    }
+
+   
+
+    .main .content div {
+      width: 90%;
+      height: auto;
+      margin: 0px auto;
+      padding: 20px;
+      margin: 20px auto;
+
+    }
+
+    .main .content div.charts {
+      width: 100%;
+      margin: 30px 0px;
+    }
+
+    .main .content div.additional-information {
+      width: 90%;
+      margin: 0px auto;
+    }
+
+    .main .content div.charts div.compare-chart {
+      flex-direction: column;
+
+    }
+
+    .pie-chart {
+      width: 100%!important;
+     
+      justify-content: space-evenly;
+      margin:0px;
+     
+
+    }
+
+ 
+    .title {
+    font-size: 15px;
+    margin: 10px 0px;
+  }
+    .title2 {
+    font-size: 10px;
+    margin: 15px 0px;
+    padding: 0px;
+
+  }
+
+  .title2 p {
+    font-size: 10px;
+
+  }
+
+  .title3 {
+    font-size: 10px;
+  }
+  .title4{
+    font-size: 30px;
+  }
+  .grey-text {
+   
+    font-size: 10px;
+  }
+  
+  .account-title{
+    font-size: 30px!important;
+  }
+  .digit{
+    font-size: 20px;
+  }
+  .main .content div.profile-details span.stats{
+    background-color: white;
+    align-items: center;
+    margin:30px 0px;
+    border-radius: 10px;
+  }
+  .main .content div.charts div.compare-chart .text{
+    margin:0px auto;
+  }
+  span.button{
+    width: 100%;
+  }
+  span.button button {
+    width: 60%;
+    margin: auto;
+  }
+  .label{
+   
+    font-size: 15px;
+  
+  }
+  .recent-transaction{
+    margin: 20px auto!important;
+  }
+
+
+  }
+</style>
+
+<body>
+  <div class="app">
+
+    <div class="main">
+      <div class="sidebar">
+        <aside>
+
+          <div class="icons">
+            <span class="sidebar-span"><i class='bx bx-home'></i>
+              <p class="para para2">Home</p>
+            </span>
+            <span class="sidebar-span"><i class='bx bxs-videos'></i>
+              <p class="para para2">Interests</p>
+            </span>
+            <span class="sidebar-span"><i class='bx bxs-notepad'></i></i>
+              <p class="para para2">Documents</p>
+            </span>
+            <span class="sidebar-span"><i class='bx bx-group' ></i>
+              <p class="para para2">Profile</p>
+            </span>
+
+
+
+          </div>
+          <div class="buttons">
+            <span><i class='bx bxs-bell'></i>
+              
+            </span>
+            <span><i class='bx bx-chevrons-left' onclick="collapse() " id="collapse-button"></i></span>
+          </div>
+
+
+        </aside>
+
+
+
+
+      </div>
+      <div class="content">
+
+        <!---------------------------------------- profile-details ------------------------------------------>
+
+
+        <div class="profile-details">
+          <span class="name">
+            <img
+              src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+              alt="loading">
+            <span class="title">
+              Ms. Rehana Smith
+
+            </span>
+
+
+
+          </span>
+          <span class="stats">
+            <span class="title ">
+              Today
+
+            </span>
+            <span class="digit account-title">
+              $ 20500
+
+            </span>
+            <span class="para grey-text">
+              Account Balance
+
+
+            </span>
+            <span class="digit">
+              $ 4000
+
+            </span>
+            <span class="para grey-text">
+              Year-to-date cost
+
+            </span>
+            <span class="digit">
+              $ 1200
+
+            </span>
+            <span class="para grey-text">
+              Total Interest
+
+            </span>
+            <span class="button">
+              <button>I want to <i class='bx bx-chevron-down'></i></button>
+
+            </span>
+          </span>
+
+          <span class="recent-transaction">
+            <span class="title">
+              Recent Transaction
+            </span>
+            <span class="transactions">
+              <p class="date grey-text">
+                16-04-2023
+
+
+              </p>
+              <p>
+                Withdrawal Transfer to Bank - XXX22
+
+              </p>
+
+
+            </span>
+            <span class="transactions">
+              <p class="date grey-text">
+                28-05-2023
+
+              </p>
+              <p>
+                Withdrawal Transfer to Bank - XXX22
+
+              </p>
+
+            </span>
+            <span class="transactions">
+              <p class="date grey-text">
+                21-06-2023
+
+              </p>
+              <p>
+                Withdrawal Transfer to Bank - XXX22
+
+              </p>
+
+            </span>
+          </span>
+
+
+        </div>
+
+        <!-- --------------------------------------------charts----------------------------------------------------- -->
+
+
+
+        <div class="charts">
+          <div class="chart-title">
+            <span class="vio-colored">Retirement Income</span>
+            <span class="title3 title4">Starting Year 2056</span>
+
+          </div>
+          <div class="chart-stat">
+            <span>
+              <p class="title">
+                $ 300,000
+
+              </p>
+              <p class="grey-text">
+                My goal
+
+              </p>
+
+            </span>
+            <span>
+              <p class="title">
+                59%
+
+              </p>
+              <p class="grey-text">
+                My Achivement
+
+              </p>
+
+
+            </span>
+            <span>
+              <p class="title">
+                $ 300
+
+              </p>
+              <p class="grey-text">
+                Est Monthly Income
+
+
+              </p>
+
+
+            </span>
+          </div>
+          <div class="chart-bar">
+            <canvas id="myChart"></canvas>
+          </div>
+          <div class="compare-bar">
+            <span class="title">How do you compare to my peers?</span>
+          </div>
+          <div class="compare-chart">
+            <div class="text">
+              <p>Age: Under 30 <i class='bx bx-chevron-down'></i></p>
+              <p>Salary: K 20 - K 30 <i class='bx bx-chevron-down'></i></p>
+              <p>Gender: Male <i class='bx bx-chevron-down'></i></p>
+
+            </div>
+            <div class="pie-chart" >
+              <div class="label">
+                <p>Average</p> <p>78%</p>
+              </div>
+             
+              <div class="label">
+                <p>Top</p><p>95%</p> 
+              </div>
+             
+              <div class="label">
+                <p>Me</p> <p>59%</p>
+              </div>
+            
+
+            </div>
+          </div>
+
+
+
+
+        </div>
+
+        <!-- ------------------------------------------additional information----------------------------------------- -->
+
+
+
+        <div class="additional-information">
+          <span class="title">
+            Retirement Strategy
+
+          </span>
+          <span>
+            <span class="title2">
+              Employee contribution
+
+            </span>
+            <span class="range"><input type="range">
+              <p>12%</p>
+            </span>
+
+          </span>
+          <span>
+            <span class="title2">
+              Retirement Age
+
+            </span>
+            <span class="range"><input type="range">
+              <p>65</p>
+            </span>
+
+
+          </span>
+          <span class="title2 range2">
+            <p>Employer Contribution</p>
+            <p>8.6%</p>
+
+          </span>
+          <span class="title2 range2">
+            <p>Interest Rate</p>
+            <p>5%</p>
+
+          </span>
+          <span class="button update-button">
+            <button>Update</button>
+
+          </span>
+
+
+
+
+
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <script>
+
+    // ---------------------------------sidebar script----------------------------------//
+
+    collapse = async () => {
+      console.log("collapsing");
+      const a = await document.querySelectorAll(".para");
+      console.log(a.length);
+      for (let i = 0; i < a.length; i++) {
+
+        document.querySelectorAll(".para")[i].classList.toggle("col");
+
+      }
+      
+      const c = await document.querySelectorAll(".sidebar");
+      console.log(c.length);
+      for (let i = 0; i < c.length; i++) {
+
+        document.querySelectorAll(".sidebar")[i].classList.toggle("reduce");
+
+      }
+      
+      const e = await document.querySelectorAll(".sidebar-span");
+      console.log(e.length);
+      for (let i = 0; i < e.length; i++) {
+
+        document.querySelectorAll(".sidebar-span")[i].classList.toggle("span-center");
+
+      }
+      await document.getElementById('collapse-button').classList.toggle('bx-chevrons-right')
+      document.getElementById('collapse-button').classList.toggle('bx-chevrons-left')
+
+    }
+    // for sidebar2
+   
+
+    //-------------------------------------chart.js-----------------------------------//
+
+    const ctx = document.getElementById('myChart');
+
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: [20, 25, 30, 35, 40, 45, 50, 55, 60, 65],
+        datasets: [{
+          label: 'Return',
+          data: [80, 90, 95, 100, 120, 150, 190, 230, 260, 300],
+          borderWidth: 1,
+          backgroundColor: 'rgb(68, 16, 165)'
+
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+
+    const ctx2 = document.getElementById('myChart2');
+
+    new Chart(ctx2, {
+      type: 'doughnut',
+      label:'Average',
+      data: {
+
+        datasets: [{
+          label: 'Average',
+          data: [22, 78],
+          borderWidth: 1,
+          backgroundColor: ['white', 'rgb(68, 16, 165)']
+
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+    const ctx3 = document.getElementById('myChart3');
+
+    new Chart(ctx3, {
+      type: 'doughnut',
+      label:'Top',
+      data: {
+
+        datasets: [{
+          label: 'Top',
+          data: [5, 95],
+          borderWidth: 1,
+          backgroundColor: ['white', 'rgb(68, 16, 165)']
+
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+
+    const ctx4 = document.getElementById('myChart4');
+
+    new Chart(ctx4, {
+      type: 'doughnut',
+      label:'Me',
+      data: {
+
+        datasets: [{
+          label: 'Me',
+          data: [41, 59],
+          borderWidth: 1,
+          backgroundColor: ['white', 'rgb(68, 16, 165)']
+
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+
+
+
+
+  </script>
+</body>
+
+</html>
